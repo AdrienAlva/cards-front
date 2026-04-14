@@ -1,1 +1,35 @@
-<p>login works!</p>
+🔹 2. login.component.html
+<div class="login-container">
+
+  <p-card header="Connexion" class="login-card">
+
+    <div class="field">
+      <label>Email</label>
+      <input
+        pInputText
+        type="text"
+        [(ngModel)]="email"
+        placeholder="email@example.com"
+      />
+    </div>
+
+    <div class="field">
+      <label>Mot de passe</label>
+      <p-password
+        [(ngModel)]="password"
+        [feedback]="false"
+        placeholder="Mot de passe"
+      ></p-password>
+    </div>
+
+    <button
+      pButton
+      label="Se connecter"
+      icon="pi pi-sign-in"
+      (click)="login()"
+      class="p-button-primary p-button-rounded"
+    ></button>
+
+  </p-card>
+
+</div>
