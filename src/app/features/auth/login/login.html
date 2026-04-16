@@ -1,35 +1,48 @@
-🔹 2. login.component.html
-<div class="login-container">
-
+<div id="login-container">
   <p-card header="Connexion" class="login-card">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="field">
+        <input
+          id="username"
+          pInputText
+          type="text"
+          formControlName="username"
+          placeholder="Nom d'utilisateur"
+        />
 
-    <div class="field">
-      <label>Email</label>
-      <input
-        pInputText
-        type="text"
-        [(ngModel)]="email"
-        placeholder="email@example.com"
-      />
-    </div>
+        @if (loginForm.get('username')?.touched && loginForm.get('username')?.hasError('required')) {
+          <small class="p-error login-err-msg">Le nom d'utilisateur est obligatoire.</small>
+        }
 
-    <div class="field">
-      <label>Mot de passe</label>
-      <p-password
-        [(ngModel)]="password"
-        [feedback]="false"
-        placeholder="Mot de passe"
-      ></p-password>
-    </div>
+        @if (loginForm.get('username')?.touched && loginForm.get('username')?.hasError('username')) {
+          <small class="p-error login-err-msg">Le nom d'utilisateur n'est pas valide.</small>
+        }
+      </div>
 
-    <button
-      pButton
-      label="Se connecter"
-      icon="pi pi-sign-in"
-      (click)="login()"
-      class="p-button-primary p-button-rounded"
-    ></button>
+      <div class="field">
+        <p-password
+          inputId="password"
+          formControlName="password"
+          [feedback]="true"
+          placeholder="Mot de passe"
+        ></p-password>
 
+        @if (loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')) {
+          <small class="p-error login-err-msg">Le mot de passe est obligatoire.</small>
+        }
+
+        @if (loginForm.get('password')?.touched && loginForm.get('password')?.hasError('minlength')) {
+          <small class="p-error login-err-msg">Le mot de passe doit contenir au moins 6 caractères.</small>
+        }
+      </div>
+
+      <p-button
+        type="submit"
+        label="Se connecter"
+        icon="pi pi-sign-in"
+        class="p-button-primary p-button-rounded"
+        [disabled]="loginForm.invalid"
+      ></p-button>
+    </form>
   </p-card>
-
 </div>

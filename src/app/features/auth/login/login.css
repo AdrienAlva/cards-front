@@ -1,0 +1,24 @@
+#login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background:  url("src/assets/images/fond-1.jpg");
+  background-size: cover;
+}
+
+.login-card {
+  width: 25%;
+}
+
+.field {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-err-msg {
+  color: red;
+}
