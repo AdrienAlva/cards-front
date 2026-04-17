@@ -1,7 +1,14 @@
-import { Injectable, signal } from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { endpoints } from 'src/app/shared/enums/api/api-endpoints';
+import {Observable} from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+
+  private readonly http = inject(HttpClient);
+
   private readonly tokenKey = 'access_token';
   private readonly authenticated = signal<boolean>(this.hasValidToken());
 
@@ -34,5 +41,9 @@ export class AuthService {
     } catch {
       return false;
     }
+  }
+
+  login(credentials: { username: string; password: string }): Observable<{token:string}> {
+    return this.http.post<{ token: string }>(`${environment.apiUrl}${endpoints.LOGIN}`, credentials);
   }
 }

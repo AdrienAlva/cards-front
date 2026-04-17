@@ -23,16 +23,12 @@
         <p-password
           inputId="password"
           formControlName="password"
-          [feedback]="true"
+          [feedback]="false"
           placeholder="Mot de passe"
         ></p-password>
 
         @if (loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')) {
           <small class="p-error login-err-msg">Le mot de passe est obligatoire.</small>
-        }
-
-        @if (loginForm.get('password')?.touched && loginForm.get('password')?.hasError('minlength')) {
-          <small class="p-error login-err-msg">Le mot de passe doit contenir au moins 6 caractères.</small>
         }
       </div>
 
@@ -43,6 +39,8 @@
         class="p-button-primary p-button-rounded"
         [disabled]="loginForm.invalid"
       ></p-button>
+
+      <p-toast></p-toast>
     </form>
   </p-card>
 </div>

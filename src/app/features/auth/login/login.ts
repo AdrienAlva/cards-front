@@ -4,6 +4,10 @@ import { Card, CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
+import {AuthService} from '@core/services/auth-service';
+import {Router} from '@angular/router';
+import {Toast} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -13,18 +17,23 @@ import { ButtonModule } from 'primeng/button';
     InputTextModule,
     PasswordModule,
     ButtonModule,
-    CardModule
+    CardModule,
+    Toast
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',
-  standalone: true
+  standalone: true,
+  providers: [MessageService]
 })
 export class Login {
   private readonly fb = inject(FormBuilder);
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+  private readonly messageService = inject(MessageService);
 
   readonly loginForm = this.fb.group({
     username: ['', [Validators.required]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
+    password: ['', [Validators.required]]
   });
 
   login() {
@@ -34,6 +43,26 @@ export class Login {
     }
 
     const { username, password } = this.loginForm.getRawValue();
-    console.log('Login avec', username, password);
+
+    if (username != null && password != null) {
+      this.authService.login({ username, password }).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.authService.setToken(response.token);
+          console.log(response.token);
+          this.router.navigate(['/dashboard']);
+        },
+        error: () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Échec de connexion',
+            detail: 'Identifiant ou mot de passe incorrect.',
+            life: 6000
+          });
+        }
+      });
+    }
+
   }
+
 }
