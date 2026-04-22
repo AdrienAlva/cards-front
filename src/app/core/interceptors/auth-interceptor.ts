@@ -19,6 +19,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const token = authService.getToken();
 
+  console.log('Interceptor called for:', req.url);
+
   if (!token) {
     return next(req);
   }
@@ -28,6 +30,11 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       Authorization: `Bearer ${token}`,
     },
   });
+
+  console.log('Interceptor called');
+  console.log('URL:', req.url);
+  console.log('Token present:', !!token);
+  console.log('Authorization header:', authReq.headers.get('Authorization'));
 
   return next(authReq);
 };
