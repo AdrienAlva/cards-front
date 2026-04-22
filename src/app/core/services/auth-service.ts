@@ -44,6 +44,8 @@ export class AuthService {
   }
 
   login(credentials: { username: string; password: string }): Observable<{token:string}> {
-    return this.http.post<{ token: string }>(`${environment.apiUrl}${endpoints.LOGIN}`, credentials);
+    return this.http.post<{ token: string }>(
+      `${environment.apiUrl}${endpoints.LOGIN}`, credentials
+    );
   }
 }
