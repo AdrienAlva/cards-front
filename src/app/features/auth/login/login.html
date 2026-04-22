@@ -1,13 +1,15 @@
-<div id="login-container">
-  <p-card header="Connexion" class="login-card">
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <div class="field">
+<div id="login-container" class="flex h-screen flex-col">
+  <h1 class="text-center text-8xl font-bold mb-4">Cards</h1>
+  <p-card header="Connexion" class="login-card ">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="flex flex-col gap-4">
+      <div class="field flex flex-col">
         <input
           id="username"
           pInputText
           type="text"
           formControlName="username"
           placeholder="Nom d'utilisateur"
+          class="w-full"
         />
 
         @if (loginForm.get('username')?.touched && loginForm.get('username')?.hasError('required')) {
@@ -19,12 +21,13 @@
         }
       </div>
 
-      <div class="field">
+      <div class="field flex flex-col">
         <p-password
           inputId="password"
           formControlName="password"
           [feedback]="false"
           placeholder="Mot de passe"
+          inputStyleClass="w-full"
         ></p-password>
 
         @if (loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')) {
@@ -32,13 +35,15 @@
         }
       </div>
 
-      <p-button
-        type="submit"
-        label="Se connecter"
-        icon="pi pi-sign-in"
-        class="p-button-primary p-button-rounded"
-        [disabled]="loginForm.invalid"
-      ></p-button>
+      <div class="flex justify-center">
+        <p-button
+          type="submit"
+          label="Se connecter"
+          icon="pi pi-sign-in"
+          class="p-button-primary p-button-rounded"
+          [disabled]="loginForm.invalid"
+        ></p-button>
+      </div>
 
       <p-toast></p-toast>
     </form>
