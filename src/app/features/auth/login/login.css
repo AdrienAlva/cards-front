@@ -2,8 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background:  url("src/assets/images/backgrounds/black-and-red-dots.png");
-  background-size: cover;
 }
 
 .login-card {
