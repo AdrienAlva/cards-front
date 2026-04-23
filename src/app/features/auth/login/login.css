@@ -2,8 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background:  url("src/assets/images/fond-1.jpg");
-  background-size: cover;
 }
 
 .login-card {
