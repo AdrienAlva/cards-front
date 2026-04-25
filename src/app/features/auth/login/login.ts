@@ -8,6 +8,7 @@ import {AuthService} from '@core/services/auth-service';
 import {Router} from '@angular/router';
 import {Toast} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
+import {UserService} from '@core/services/user-service';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ import {MessageService} from 'primeng/api';
 export class Login {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
+  private readonly userService = inject(UserService);
   private readonly router = inject(Router);
   private readonly messageService = inject(MessageService);
 
@@ -49,6 +51,11 @@ export class Login {
         next: (response) => {
           console.log(response);
           this.authService.setToken(response.token);
+          this.authService.setUserId(response.user_id);
+          // TODO
+          // - get le user et le set dans le localstorage
+          // - getUSerId et setUserId nécessaire dans auth-service ?
+          console.log(this.userService.getUser(response.user_id));
           console.log(response.token);
           this.router.navigate(['/dashboard']);
         },

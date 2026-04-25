@@ -10,6 +10,7 @@ export class AuthService {
   private readonly http = inject(HttpClient);
 
   private readonly tokenKey = 'access_token';
+  private readonly userIdKey = 'user_id';
   private readonly authenticated = signal<boolean>(this.hasValidToken());
 
   get isAuthenticated() {
@@ -43,9 +44,17 @@ export class AuthService {
     }
   }
 
-  login(credentials: { username: string; password: string }): Observable<{token:string}> {
-    return this.http.post<{ token: string }>(
+  login(credentials: { username: string; password: string }): Observable<{token:string, user_id: string}> {
+    return this.http.post<{ token: string, user_id: string }>(
       `${environment.apiUrl}${endpoints.LOGIN}`, credentials
     );
+  }
+
+  setUserId(userId: string): void {
+    localStorage.setItem(this.userIdKey, userId);
+  }
+
+  getUserId(): string | null {
+    return localStorage.getItem(this.userIdKey);
   }
 }
