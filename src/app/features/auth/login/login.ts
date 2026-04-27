@@ -4,11 +4,12 @@ import { Card, CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
-import {AuthService} from '@core/services/auth-service';
-import {Router} from '@angular/router';
-import {Toast} from 'primeng/toast';
-import {MessageService} from 'primeng/api';
-import {UserService} from '@core/services/user-service';
+import { AuthService } from '@core/services/auth-service';
+import { Router } from '@angular/router';
+import { Toast } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { UserService } from '@core/services/user-service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -47,19 +48,23 @@ export class Login {
     const { username, password } = this.loginForm.getRawValue();
 
     if (username != null && password != null) {
-      this.authService.login({ username, password }).subscribe({
-        next: (response) => {
-          console.log(response);
+      this.authService.login({ username, password }).pipe(
+        switchMap((response) => {
+          console.log(response)
           this.authService.setToken(response.token);
-          this.authService.setUserId(response.user_id);
-          // TODO
-          // - get le user et le set dans le localstorage
-          // - getUSerId et setUserId nécessaire dans auth-service ?
-          console.log(this.userService.getUser(response.user_id));
-          console.log(response.token);
+          return this.userService.getUser(response.user_id);
+        })
+      ).subscribe({
+        next: (user) => {
+          console.log('Utilisateur chargé :', user);
           this.router.navigate(['/dashboard']);
         },
-        error: () => {
+        error: (error) => {
+          console.error('Erreur pendant login/getUser :', error);
+          console.error('HTTP status :', error?.status);
+          console.error('HTTP message :', error?.message);
+          console.error('HTTP error body :', error?.error);
+
           this.messageService.add({
             severity: 'error',
             summary: 'Échec de connexion',
@@ -69,7 +74,5 @@ export class Login {
         }
       });
     }
-
   }
-
 }

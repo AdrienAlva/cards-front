@@ -11,10 +11,11 @@ import {Observable} from 'rxjs';
 export class UserService {
   private readonly http = inject(HttpClient);
 
+  private readonly userIdKey = 'user_id';
+
   getUser(userId: string): Observable<User> {
-    return this.http.get<User>(
-      `${environment.apiUrl}${endpoints.LOGIN}` + '/' + userId
-    );
+    const url = `${environment.apiUrl}${endpoints.USERS}/${userId}`;
+    return this.http.get<User>(url);
   }
 
 }

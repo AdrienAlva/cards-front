@@ -10,7 +10,6 @@ export class AuthService {
   private readonly http = inject(HttpClient);
 
   private readonly tokenKey = 'access_token';
-  private readonly userIdKey = 'user_id';
   private readonly authenticated = signal<boolean>(this.hasValidToken());
 
   get isAuthenticated() {
@@ -50,11 +49,4 @@ export class AuthService {
     );
   }
 
-  setUserId(userId: string): void {
-    localStorage.setItem(this.userIdKey, userId);
-  }
-
-  getUserId(): string | null {
-    return localStorage.getItem(this.userIdKey);
-  }
 }
