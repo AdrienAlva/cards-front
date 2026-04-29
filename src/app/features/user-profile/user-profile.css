@@ -1,10 +1,10 @@
-#dashboard-container {
+#user-profile-container {
   height: 100vh;
   width: 100%;
   display: flex;
 }
 
-#game-selection-wrapper {
+#user-profile-wrapper {
   height: 100vh;
   width: 95%;
 }

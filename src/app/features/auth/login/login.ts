@@ -5,11 +5,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { AuthService } from '@core/services/auth-service';
-import { Router } from '@angular/router';
+import {Router, ROUTES} from '@angular/router';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { UserService } from '@core/services/user-service';
 import { switchMap } from 'rxjs';
+import {ROUTES_ENUM} from '@shared/enums/routes.enum';
 
 @Component({
   selector: 'app-login',
@@ -57,7 +58,8 @@ export class Login {
       ).subscribe({
         next: (user) => {
           console.log('Utilisateur chargé :', user);
-          this.router.navigate(['/dashboard']);
+          this.userService.setUser(user);
+          this.router.navigate([ROUTES_ENUM.dashboard()]);
         },
         error: (error) => {
           console.error('Erreur pendant login/getUser :', error);
