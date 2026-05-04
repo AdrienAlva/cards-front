@@ -11,8 +11,6 @@ import {Observable} from 'rxjs';
 export class UserService {
   private readonly http = inject(HttpClient);
 
-  private readonly userIdKey = 'user_id';
-
   private readonly userSignal:WritableSignal<User|null> = signal<User | null>(null);
 
 
@@ -21,7 +19,7 @@ export class UserService {
     return this.http.get<User>(url);
   }
 
-  get user(): User|null {
+  get connectedUser(): User|null {
     return this.userSignal();
   }
 
