@@ -1,7 +1,7 @@
 <div id="user-profile-container">
   <div id="user-profile-wrapper">
       @if (profileUser(); as u) {
-        <p-card id="user-card" header="{{ u.name }}">
+        <p-card class="user-card " header="{{ u.name }}">
           <p>{{ u.about }}</p>
         </p-card>
       }
