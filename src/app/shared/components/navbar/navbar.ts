@@ -19,6 +19,10 @@ export class Navbar {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
 
+  toDashboard(): void {
+    this.router.navigate([ROUTES_ENUM.dashboard()]);
+  }
+
   toProfile(): void {
     let userId: string | null = localStorage.getItem('user_id');
     if (userId) {
