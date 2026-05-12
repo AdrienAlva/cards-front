@@ -13,6 +13,7 @@
 }
 
 .game-card {
+  height: 55vh;
   margin: 2rem;
 }
 
