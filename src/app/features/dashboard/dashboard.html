@@ -1,8 +1,7 @@
 <div id="dashboard-container">
-  <div id="game-selection-wrapper">
-    <div class="mb-4 p-8 flex items-center space-evenly">
+    <div id="game-selection-wrapper" class="mb-4 p-8 flex items-center space-evenly">
       <!-- TODO get les types de jeux afin d'iterer dessus pour créer les cards-->
-      <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+      <p-card class="game-card" [style]="{ width: '25rem', overflow: 'hidden' }">
         <ng-template #header>
           <img alt="Card" class="w-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
         </ng-template>
@@ -37,7 +36,7 @@
         </ng-template>
       </p-card>
     </div>
-  </div>
+
   <app-navbar id="app-navbar"></app-navbar>
 </div>
 
