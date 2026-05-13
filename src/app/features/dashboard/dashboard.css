@@ -1,9 +1,3 @@
-#dashboard-container {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-}
-
 #game-selection-wrapper {
   height: 100vh;
   width: 95%;

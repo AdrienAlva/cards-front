@@ -1,4 +1,4 @@
-<div id="dashboard-container">
+<div id="dashboard-container" class="container">
   <div id="game-selection-wrapper" class="mb-4 p-8 flex items-center space-evenly">
     <!-- TODO get les types de jeux afin d'iterer dessus pour créer les cards-->
     <p-card class="game-card" [style]="{ width: '25rem', overflow: 'hidden' }">
@@ -15,7 +15,7 @@
       <ng-template #footer>
         <div class="flex gap-4 mt-1">
           <p-button label="Rejoindre" severity="secondary" class="w-full" [outlined]="true" styleClass="w-full" />
-          <p-button label="Créer" class="w-full" styleClass="w-full" />
+          <p-button label="Créer" class="w-full" styleClass="w-full" (click)="toNewGame()" />
         </div>
       </ng-template>
     </p-card>
