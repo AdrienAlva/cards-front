@@ -1,42 +1,34 @@
 <div id="dashboard-container">
-    <div id="game-selection-wrapper" class="mb-4 p-8 flex items-center space-evenly">
-      <!-- TODO get les types de jeux afin d'iterer dessus pour créer les cards-->
-      <p-card class="game-card" [style]="{ width: '25rem', overflow: 'hidden' }">
-        <ng-template #header>
-          <img alt="Card" class="w-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
-        </ng-template>
-        <ng-template #title> War </ng-template>
-        <ng-template #subtitle> La fameuse bataille ! </ng-template>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-          quas!
-        </p>
-        <ng-template #footer>
-          <div class="flex gap-4 mt-1">
-            <p-button label="Rejoindre" severity="secondary" class="w-full" [outlined]="true" styleClass="w-full" />
-            <p-button label="Créer" class="w-full" styleClass="w-full" />
-          </div>
-        </ng-template>
-      </p-card>
-      <p-card class="game-card" [style]="{ width: '25rem', overflow: 'hidden' }">
-        <ng-template #header>
-          <img alt="Card" class="w-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
-        </ng-template>
-        <ng-template #title> Coming soon... </ng-template>
-        <ng-template #subtitle> Un peu de patience ! </ng-template>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat!
-        </p>
-        <ng-template #footer>
-          <div class="flex gap-4 mt-1">
-            <p-button label="Rejoindre" severity="secondary" class="w-full" [outlined]="true" styleClass="w-full" />
-            <p-button label="Créer" class="w-full" styleClass="w-full" />
-          </div>
-        </ng-template>
-      </p-card>
-    </div>
+  <div id="game-selection-wrapper" class="mb-4 p-8 flex items-center space-evenly">
+    <!-- TODO get les types de jeux afin d'iterer dessus pour créer les cards-->
+    <p-card class="game-card" [style]="{ width: '25rem', overflow: 'hidden' }">
+      <ng-template #header>
+        <div class="game-card-header">
+          <img alt="Card" class="game-card-header-image" src="/assets/images/games-header/war-card-header.jpg" />
+        </div>
+      </ng-template>
+      <ng-template #title>War</ng-template>
+      <ng-template #subtitle>La Bataille : que le plus chanceux gagne !</ng-template>
+      <p>
+        Chaque joueur reçoit une pile de cartes du paquet traditionnel de 52 cartes. À tour de rôle, on retourne la carte du dessus : la plus forte gagne la bataille et rafle toutes les cartes jouées ! En cas d’égalité, c’est la bataille : on pose des cartes face cachée puis une carte face visible… et le combat continue !
+      </p>
+      <ng-template #footer>
+        <div class="flex gap-4 mt-1">
+          <p-button label="Rejoindre" severity="secondary" class="w-full" [outlined]="true" styleClass="w-full" />
+          <p-button label="Créer" class="w-full" styleClass="w-full" />
+        </div>
+      </ng-template>
+    </p-card>
+    <p-card class="game-card" [style]="{ width: '25rem', overflow: 'hidden' }">
+      <ng-template #header>
+        <div class="game-card-header">
+          <img alt="Card" class="game-card-header-image" src="/assets/images/games-header/coming-soon.jpg" />
+        </div>
+      </ng-template>
+      <ng-template #title> Coming soon... </ng-template>
+      <ng-template #subtitle> Un peu de patience ! </ng-template>
+    </p-card>
+  </div>
 
   <app-navbar id="app-navbar"></app-navbar>
 </div>
-
-
