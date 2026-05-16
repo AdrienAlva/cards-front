@@ -9,10 +9,16 @@
 .game-card {
   height: 55vh;
   margin: 2rem;
+  width: 25rem;
+  overflow: hidden;
+}
+
+:host ::ng-deep .game-card .p-card-header {
+  height: 180px;
 }
 
 .game-card-header {
-  height: 180px;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -22,3 +28,8 @@
   display: block;
   object-fit: cover;
 }
+
+:host ::ng-deep .game-card .p-card-content {
+  height: 150px;
+}
+
