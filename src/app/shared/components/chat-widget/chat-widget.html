@@ -1,0 +1,66 @@
+@if (isOpen()) {
+  <div class="chat-widget">
+    <p-card>
+      <ng-template pTemplate="header">
+        <div class="chat-header">
+          <div>
+            <div class="chat-title">{{ title() }}</div>
+            <div class="chat-status" [class.connected]="connected()">
+              {{ connected() ? 'Connecté' : 'Déconnecté' }}
+            </div>
+          </div>
+
+          <button
+            pButton
+            type="button"
+            icon="pi pi-times"
+            severity="secondary"
+            text
+            rounded
+            (click)="close()">
+          </button>
+        </div>
+      </ng-template>
+
+      <p-scrollpanel styleClass="chat-messages">
+        <div class="messages-wrapper">
+          @for (message of messages(); track trackByMessageId($index, message)) {
+            <div class="message-row" [class.self]="message.self">
+              <div class="message-bubble">
+                <div class="message-author">{{ message.author }}</div>
+                <div class="message-content">{{ message.content }}</div>
+              </div>
+            </div>
+          }
+
+          @if (messages().length === 0) {
+            <div class="empty-state">
+              Aucun message pour le moment.
+            </div>
+          }
+        </div>
+      </p-scrollpanel>
+
+      <ng-template pTemplate="footer">
+        <div class="chat-input-row">
+          <input
+            pInputText
+            type="text"
+            class="chat-input"
+            [ngModel]="draft()"
+            (ngModelChange)="updateDraft($event)"
+            (keyup.enter)="send()"
+            placeholder="Écrire un message..." />
+
+          <button
+            pButton
+            type="button"
+            icon="pi pi-send"
+            label="Envoyer"
+            (click)="send()">
+          </button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+}

@@ -3,6 +3,7 @@ import {NgOptimizedImage} from '@angular/common';
 import {Router} from '@angular/router';
 import {AuthService} from '@core/services/auth-service';
 import {ROUTES_ENUM} from '@shared/enums/routes.enum';
+import {ChatOverlayService} from '@shared/services/chat-overlay-service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,9 +19,14 @@ export class Navbar {
 
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly chatOverlayService = inject(ChatOverlayService);
 
   toDashboard(): void {
     this.router.navigate([ROUTES_ENUM.dashboard()]);
+  }
+
+  toggleChat(): void {
+    this.chatOverlayService.toggle();
   }
 
   toProfile(): void {
