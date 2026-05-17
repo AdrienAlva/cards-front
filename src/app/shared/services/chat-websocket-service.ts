@@ -16,7 +16,7 @@ export class ChatWebsocketService {
   readonly connected = signal(false);
 
   private socket: WebSocket | null = null;
-  private readonly wsUrl = 'ws://localhost:8081/chat';
+  private readonly wsUrl = 'ws://localhost:8081/ws/chat';
 
   connect(): void {
     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
